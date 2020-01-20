@@ -38,6 +38,15 @@ Example:
 $ repo-create label --org itfactory-tm -n 22 --prefix Keuzeproject1-MIN --name "21:45 - 23:15" --color "ffffff"
 ```
 
+### Remove labels
+This will remove a label in all repositories with a given name, meant to remove unneeded defaults
+
+Example:
+```console
+$ repo-create rm-label --org itfactory-tm -n 22 --prefix Keuzeproject1-MIN --name "bug"
+```
+
+
 ### Branch protection
 This will enable branch protection to enforce code review
 
