@@ -60,7 +60,7 @@ func (s *projectCmdOptions) RunE(cmd *cobra.Command, args []string) error {
 	gh := github.NewClient(tc)
 
 	for i := 1; i <= s.Number; i++ {
-		name := fmt.Sprintf("%s-A%02d", s.Prefix, i)
+		name := fmt.Sprintf("%s%02d", s.Prefix, i)
 
 		proj, _, err := gh.Repositories.CreateProject(ctx, s.Org, name, &github.ProjectOptions{
 			Name: &s.Name,

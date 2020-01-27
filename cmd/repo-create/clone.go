@@ -72,7 +72,7 @@ func (s *cloneCmdOptions) RunE(cmd *cobra.Command, args []string) error {
 	}
 
 	for i := 1; i <= s.Number; i++ {
-		name := fmt.Sprintf("%s-A%02d", s.Prefix, i)
+		name := fmt.Sprintf("%s%02d", s.Prefix, i)
 		log.Println("pushing", name)
 
 		_, err := r.CreateRemote(&config.RemoteConfig{

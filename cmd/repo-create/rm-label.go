@@ -58,7 +58,7 @@ func (s *rmLabelCmdOptions) RunE(cmd *cobra.Command, args []string) error {
 	gh := github.NewClient(tc)
 
 	for i := 1; i <= s.Number; i++ {
-		name := fmt.Sprintf("%s-A%02d", s.Prefix, i)
+		name := fmt.Sprintf("%s%02d", s.Prefix, i)
 		_, err := gh.Issues.DeleteLabel(ctx, s.Org, name, s.Name)
 
 		if err != nil {
