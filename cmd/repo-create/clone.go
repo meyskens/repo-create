@@ -18,9 +18,6 @@ func init() {
 }
 
 type cloneCmdOptions struct {
-	Prefix string
-	Number int
-	Org    string
 	Source string
 }
 
@@ -33,9 +30,6 @@ func NewCloneCmd() *cobra.Command {
 		Long:  `Mass clone a repo and put it in newly created repositories`,
 		RunE:  s.RunE,
 	}
-	c.Flags().StringVarP(&s.Prefix, "prefix", "p", "", "Prefix of repository names")
-	c.Flags().IntVarP(&s.Number, "number", "n", 1, "How many repositories to create")
-	c.Flags().StringVarP(&s.Org, "org", "o", "", "Org to create repos under")
 	c.Flags().StringVarP(&s.Source, "source", "s", "", "Base repository")
 
 	c.MarkFlagRequired("prefix")
@@ -71,13 +65,13 @@ func (s *cloneCmdOptions) RunE(cmd *cobra.Command, args []string) error {
 		return err
 	}
 
-	for i := 1; i <= s.Number; i++ {
-		name := fmt.Sprintf("%s%02d", s.Prefix, i)
+	for i := 1; i <= number; i++ {
+		name := fmt.Sprintf("%s%02d", prefix, i)
 		log.Println("pushing", name)
 
 		_, err := r.CreateRemote(&config.RemoteConfig{
 			Name: name,
-			URLs: []string{fmt.Sprintf("https://github.com/%s/%s.git", s.Org, name)},
+			URLs: []string{fmt.Sprintf("https://github.com/%s/%s.git", org, name)},
 		})
 
 		if err != nil {

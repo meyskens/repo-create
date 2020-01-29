@@ -12,6 +12,9 @@ import (
 
 var (
 	authToken string
+	prefix    string
+	number    int
+	org       string
 
 	rootCmd = &cobra.Command{
 		Use:   "repo-create",
@@ -26,6 +29,9 @@ func main() {
 	viper.AutomaticEnv()
 
 	rootCmd.PersistentFlags().StringVarP(&authToken, "auth-token", "t", os.Getenv("AUTH_TOKEN"), "GitHub auth token")
+	rootCmd.PersistentFlags().StringVarP(&prefix, "prefix", "p", "", "Prefix of repository names")
+	rootCmd.PersistentFlags().IntVarP(&number, "number", "n", 1, "How many repositories to create")
+	rootCmd.PersistentFlags().StringVarP(&org, "org", "o", "", "Org to create repos under")
 
 	flag.Parse()
 	err := rootCmd.Execute()
