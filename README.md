@@ -46,6 +46,14 @@ Example:
 $ repo-create rm-label --org itfactory-tm -n 22 --prefix Keuzeproject1-MIN --name "bug"
 ```
 
+### Delete repositories
+This command will delete repositories in a given org with a given prefix, these can also be set to private. NOTE: tjis functon will not warn you before deletion!
+
+Example:
+```console
+$ repo-create delete --org itfactory-tm -n 22 --prefix Keuzeproject1-MIN
+```
+
 
 ### Branch protection
 This will enable branch protection to enforce code review
