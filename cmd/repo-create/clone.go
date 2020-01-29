@@ -30,7 +30,7 @@ func NewCloneCmd() *cobra.Command {
 		Long:  `Mass clone a repo and put it in newly created repositories`,
 		RunE:  s.RunE,
 	}
-	c.Flags().StringVarP(&s.Source, "source", "s", "", "Base repository")
+	c.Flags().StringVarP(&s.Source, "source", "f", "", "Base repository")
 
 	c.MarkFlagRequired("prefix")
 	c.MarkFlagRequired("org")
