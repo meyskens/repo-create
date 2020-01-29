@@ -49,7 +49,7 @@ func (s *labelCmdOptions) RunE(cmd *cobra.Command, args []string) error {
 
 	gh := github.NewClient(tc)
 
-	for i := 1; i <= number; i++ {
+	for i := start; i <= number; i++ {
 		name := fmt.Sprintf("%s%02d", prefix, i)
 		_, _, err := gh.Issues.CreateLabel(ctx, org, name, &github.Label{
 			Name:  &s.Name,

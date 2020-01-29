@@ -43,7 +43,7 @@ func (s *createCmdOptions) RunE(cmd *cobra.Command, args []string) error {
 
 	gh := github.NewClient(tc)
 
-	for i := 1; i <= number; i++ {
+	for i := start; i <= number; i++ {
 		name := fmt.Sprintf("%s%02d", prefix, i)
 		_, _, err := gh.Repositories.Create(ctx, org, &github.Repository{
 			Name:    &name,

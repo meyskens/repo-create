@@ -14,6 +14,7 @@ var (
 	authToken string
 	prefix    string
 	number    int
+	start     int
 	org       string
 
 	rootCmd = &cobra.Command{
@@ -31,6 +32,7 @@ func main() {
 	rootCmd.PersistentFlags().StringVarP(&authToken, "auth-token", "t", os.Getenv("AUTH_TOKEN"), "GitHub auth token")
 	rootCmd.PersistentFlags().StringVarP(&prefix, "prefix", "p", "", "Prefix of repository names")
 	rootCmd.PersistentFlags().IntVarP(&number, "number", "n", 1, "How many repositories to create")
+	rootCmd.PersistentFlags().IntVarP(&number, "start", "s", 1, "Number of the first repository")
 	rootCmd.PersistentFlags().StringVarP(&org, "org", "o", "", "Org to create repos under")
 
 	flag.Parse()

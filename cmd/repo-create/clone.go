@@ -65,7 +65,7 @@ func (s *cloneCmdOptions) RunE(cmd *cobra.Command, args []string) error {
 		return err
 	}
 
-	for i := 1; i <= number; i++ {
+	for i := start; i <= number; i++ {
 		name := fmt.Sprintf("%s%02d", prefix, i)
 		log.Println("pushing", name)
 
