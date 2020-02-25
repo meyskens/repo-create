@@ -19,6 +19,7 @@ func init() {
 
 type cloneCmdOptions struct {
 	Source string
+	Force  bool
 }
 
 // NewCloneCmd generates the `clone` command
@@ -31,6 +32,7 @@ func NewCloneCmd() *cobra.Command {
 		RunE:  s.RunE,
 	}
 	c.Flags().StringVarP(&s.Source, "source", "f", "", "Base repository")
+	c.Flags().BoolVar(&s.Force, "force", false, "Force push !!DANGEROUS!!")
 
 	c.MarkFlagRequired("prefix")
 	c.MarkFlagRequired("org")
@@ -78,7 +80,7 @@ func (s *cloneCmdOptions) RunE(cmd *cobra.Command, args []string) error {
 			log.Println(err)
 		}
 
-		err = r.Push(&git.PushOptions{
+		pushOptions := git.PushOptions{
 			RemoteName: name,
 			// The intended use of a GitHub personal access token is in replace of your password
 			// because access tokens can easily be revoked.
@@ -87,7 +89,11 @@ func (s *cloneCmdOptions) RunE(cmd *cobra.Command, args []string) error {
 				Username: "iloveoctocats", // yes, this can be anything except an empty string
 				Password: authToken,
 			},
-		})
+		}
+		if s.Force {
+			pushOptions.RefSpecs = []config.RefSpec{"+refs/heads/master:refs/heads/master"}
+		}
+		err = r.Push(&pushOptions)
 
 		if err != nil {
 			log.Println(err)
