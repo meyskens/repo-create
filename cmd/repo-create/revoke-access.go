@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/davecgh/go-spew/spew"
 	"github.com/google/go-github/v29/github"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -52,7 +51,6 @@ func (s *revokeaccessCmdOptions) RunE(cmd *cobra.Command, args []string) error {
 	for i := start; i <= number; i++ {
 		name := fmt.Sprintf("%s%02d", prefix, i)
 		collaborators, _, err := gh.Repositories.ListCollaborators(ctx, org, name, &github.ListCollaboratorsOptions{})
-		spew.Dump(collaborators)
 		if err != nil {
 			return err
 		}
