@@ -70,3 +70,11 @@ Example:
 ```console
 $ repo-create project --org itfactory-tm -n 22 --prefix Keuzeproject1-MIN --name Kanban --collumns todo,doing,done
 ```
+
+### Add issues
+This will add a issue to the repo prefilled with a given content
+
+Example:
+```console
+$ repo-create issue --org itfactory-tm -n 22 --prefix Keuzeproject1-MIN --title "Good luck!" --content "yes you can!"
+```
