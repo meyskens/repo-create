@@ -5,7 +5,7 @@ This is a small tool to quickly prepare GitHub repositories, bootstrapped with f
 It is meant to be used in education to let students work under a specific GitHub org with some files, labels and settings pre-setup.
 
 ## Usage
-This is a CLI tool built in Go. Currently there are no binaries available due to time shortage. PRs to add Go Releaser very welcome!
+This is a CLI tool, you can find binaries for all major operating systems under [releases](https://github.com/meyskens/repo-create/releases/tag/v0.1.0).
 
 ## Auth
 This tool uses a GitHub personal token, set in env vars (or `--auth-token` flag).
