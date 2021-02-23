@@ -31,7 +31,7 @@ func NewProtectCmd() *cobra.Command {
 	}
 
 	c.Flags().StringVarP(&s.Branch, "branch", "b", "master", "Name of the branch")
-	c.Flags().IntVar(&s.MinReviewers, "min-reviewers", 1, "Minimal reviewrers")
+	c.Flags().IntVar(&s.MinReviewers, "min-reviewers", 1, "Minimal reviewers")
 
 	c.MarkFlagRequired("prefix")
 	c.MarkFlagRequired("org")
