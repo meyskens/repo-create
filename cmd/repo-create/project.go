@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"strings"
 
 	"github.com/google/go-github/v29/github"
 	"github.com/spf13/cobra"
@@ -48,6 +49,10 @@ func (s *projectCmdOptions) RunE(cmd *cobra.Command, args []string) error {
 	tc := oauth2.NewClient(ctx, ts)
 
 	gh := github.NewClient(tc)
+
+	if len(s.Collumns) == 1 {
+		s.Collumns = strings.Split(s.Collumns[0], ",")
+	}
 
 	for i := start; i <= number; i++ {
 		name := fmt.Sprintf("%s%02d", prefix, i)
