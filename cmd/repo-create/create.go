@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"time"
 
 	"github.com/google/go-github/v29/github"
 	"github.com/spf13/cobra"
@@ -52,6 +53,7 @@ func (s *createCmdOptions) RunE(cmd *cobra.Command, args []string) error {
 		if err != nil {
 			return err
 		}
+		time.Sleep(time.Second)
 	}
 
 	return nil
