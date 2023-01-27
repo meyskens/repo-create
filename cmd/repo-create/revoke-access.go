@@ -18,6 +18,7 @@ func init() {
 type revokeaccessCmdOptions struct {
 	Branch       string
 	MinReviewers int
+	Remove bool
 }
 
 // NewRevokeAccessCmd generates the `protect` command
@@ -33,6 +34,8 @@ func NewRevokeAccessCmd() *cobra.Command {
 	c.MarkFlagRequired("prefix")
 	c.MarkFlagRequired("org")
 	c.MarkFlagRequired("number")
+
+	c.Flags().BoolVar(&s.Remove, "remove", false, "Remove collaborators")
 
 	viper.BindPFlags(c.Flags())
 
@@ -56,9 +59,15 @@ func (s *revokeaccessCmdOptions) RunE(cmd *cobra.Command, args []string) error {
 		}
 
 		for _, collacollaborator := range collaborators {
-			_, err := gh.Repositories.RemoveCollaborator(ctx, org, name, collacollaborator.GetLogin())
-			if err != nil {
-				log.Println(err)
+			if s.Remove {
+				_, err := gh.Repositories.RemoveCollaborator(ctx, org, name, collacollaborator.GetLogin())
+				if err != nil {
+					log.Println(err)
+				}
+			} else {
+				gh.Repositories.AddCollaborator(ctx, org, name, collacollaborator.GetLogin(), &github.RepositoryAddCollaboratorOptions{
+					Permission: "pull",
+				})
 			}
 		}
 	}
